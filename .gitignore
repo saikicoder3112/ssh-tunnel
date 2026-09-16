@@ -1,0 +1,23 @@
+/mytunnel
+/bin/
+dist/
+*.exe
+.DS_Store
+
+# Local SSH connection configs (hosts, users, port forwards)
+/config.yaml
+/config.yml
+*.local.yaml
+*.local.yml
+.env
+.env.*
+
+# Private keys accidentally copied into the repo
+*.pem
+*.key
+id_rsa
+id_ed25519
+id_ecdsa
+
+# Public template — keep this
+!configs/config.example.yaml

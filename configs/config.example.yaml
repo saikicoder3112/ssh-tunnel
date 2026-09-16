@@ -1,0 +1,10 @@
+connections:
+  - title: demo-port-fwd
+    user: six
+    host: saiki.local
+    port: 22
+    compression: true
+    forward_x: true
+    custom: -L 8088:bs:8080
+    append: "& sleep infinity"
+    sort: 20
