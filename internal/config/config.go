@@ -47,14 +47,18 @@ func Path() string {
 	if p := os.Getenv("MYTUNNEL_CONFIG"); p != "" {
 		return p
 	}
-	if _, err := os.Stat("config.yaml"); err == nil {
-		return "config.yaml"
-	}
 	home, err := os.UserHomeDir()
-	if err != nil {
-		return "config.yaml"
+	if err == nil {
+		sshPath := filepath.Join(home, ".ssh", "mytunnel.yaml")
+		if _, err := os.Stat(sshPath); err == nil {
+			return sshPath
+		}
+		if _, err := os.Stat("config.yaml"); err == nil {
+			return "config.yaml"
+		}
+		return sshPath
 	}
-	return filepath.Join(home, ".config", "mytunnel", "config.yaml")
+	return "config.yaml"
 }
 
 func Load() (*Config, string, error) {
